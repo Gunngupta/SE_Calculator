@@ -14,6 +14,45 @@ def _validate(b: str) -> None:
         raise InvalidBinaryInputError(b)
     
 
+
+# Tanisha Gupta - Binary Arithmetic
+
+def get_decimal_value(b: str) -> int:
+    return int(binary_to_decimal(b).split("'")[1])
+
+
+def binary_add(a: str, b: str) -> str:
+    da = get_decimal_value(a)
+    db = get_decimal_value(b)
+    return decimal_to_binary(f"D'{da + db}'")
+
+
+def binary_subtract(a: str, b: str) -> str:
+    da = get_decimal_value(a)
+    db = get_decimal_value(b)
+
+    if da < db:
+        raise ValueError("Negative result not allowed")
+
+    result = da - db
+    return decimal_to_binary(f"D'{result}'")
+
+
+def binary_multiply(a: str, b: str) -> str:
+    da = get_decimal_value(a)
+    db = get_decimal_value(b)
+    return decimal_to_binary(f"D'{da * db}'")
+
+
+def binary_divide(a: str, b: str) -> str:
+    da = get_decimal_value(a)
+    db = get_decimal_value(b)
+
+    if db == 0:
+        raise ValueError("Binary division by zero")
+
+    return decimal_to_binary(f"D'{da // db}'")
+
 #-----------Gunn 091: complement-------------------------------
 
 
