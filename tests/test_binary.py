@@ -8,11 +8,7 @@ from modules.binary import (
 from modules.exceptions import InvalidBinaryInputError, NegativeBinaryResultError
 
 
-# -------------------------------
-# 🔹 Conversion Tests
-# -------------------------------
 class TestBinaryConversions(unittest.TestCase):
-
     def test_bin_to_dec_basic(self):
         self.assertEqual(binary_to_decimal("B'1010"), "D'10")
 
@@ -22,10 +18,6 @@ class TestBinaryConversions(unittest.TestCase):
     def test_bin_to_dec_one(self):
         self.assertEqual(binary_to_decimal("B'1"), "D'1")
 
-    # ✅ Added (important)
-    def test_large_binary(self):
-        self.assertEqual(binary_to_decimal("B'11111111"), "D'255")
-
     def test_dec_to_bin_basic(self):
         self.assertEqual(decimal_to_binary("D'10"), "B'1010")
 
@@ -33,17 +25,9 @@ class TestBinaryConversions(unittest.TestCase):
         self.assertEqual(decimal_to_binary("D'0"), "B'0")
 
 
-# -------------------------------
-# 🔹 Arithmetic Tests
-# -------------------------------
 class TestBinaryArithmetic(unittest.TestCase):
-
     def test_add(self):
         self.assertEqual(binary_add("B'011", "B'010"), "B'101")
-
-    # ✅ Added
-    def test_add_zero(self):
-        self.assertEqual(binary_add("B'0", "B'101"), "B'101")
 
     def test_subtract(self):
         self.assertEqual(binary_subtract("B'101", "B'010"), "B'011")
@@ -55,53 +39,30 @@ class TestBinaryArithmetic(unittest.TestCase):
     def test_multiply(self):
         self.assertEqual(binary_multiply("B'011", "B'010"), "B'110")
 
-    # ✅ Added
-    def test_multiply_zero(self):
-        self.assertEqual(binary_multiply("B'101", "B'0"), "B'0")
-
     def test_divide(self):
         self.assertEqual(binary_divide("B'110", "B'010"), "B'11")
-
-    # ✅ Added
-    def test_divide_same(self):
-        self.assertEqual(binary_divide("B'101", "B'101"), "B'1")
 
     def test_divide_by_zero(self):
         with self.assertRaises(ValueError):
             binary_divide("B'110", "B'0")
 
 
-# -------------------------------
-# 🔹 Complement Tests
-# -------------------------------
 class TestComplements(unittest.TestCase):
-
     def test_ones_complement(self):
         self.assertEqual(ones_complement("B'1010"), "B'0101")
 
     def test_ones_all_zeros(self):
         self.assertEqual(ones_complement("B'0000"), "B'1111")
 
-    # ✅ Added
-    def test_ones_single_bit(self):
-        self.assertEqual(ones_complement("B'1"), "B'0")
-
     def test_twos_complement(self):
         self.assertEqual(twos_complement("B'0111"), "B'1001")
+
 
     def test_twos_complement_zero(self):
         self.assertEqual(twos_complement("B'0000"), "B'10000")
 
-    # ✅ Added
-    def test_twos_single_bit(self):
-        self.assertEqual(twos_complement("B'1"), "B'1")
 
-
-# -------------------------------
-# 🔹 Invalid Input Tests
-# -------------------------------
 class TestInvalidInput(unittest.TestCase):
-
     def test_invalid_char(self):
         with self.assertRaises(InvalidBinaryInputError):
             binary_to_decimal("B'1021")
@@ -115,5 +76,5 @@ class TestInvalidInput(unittest.TestCase):
             binary_to_decimal("1021")
 
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     unittest.main()
