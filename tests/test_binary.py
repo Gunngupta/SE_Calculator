@@ -76,5 +76,5 @@ class TestInvalidInput(unittest.TestCase):
             binary_to_decimal("1021")
 
 
-if _name_ == '_main_':
+if __name__ == "__main__":
     unittest.main()

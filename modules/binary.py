@@ -24,7 +24,7 @@ def get_decimal_value(b: str) -> int:
 def binary_add(a: str, b: str) -> str:
     da = get_decimal_value(a)
     db = get_decimal_value(b)
-    return decimal_to_binary(f"D'{da + db}'")
+    return decimal_to_binary(f"D'{da + db}")
 
 
 def binary_subtract(a: str, b: str) -> str:
@@ -32,16 +32,17 @@ def binary_subtract(a: str, b: str) -> str:
     db = get_decimal_value(b)
 
     if da < db:
-        raise ValueError("Negative result not allowed")
+        raise NegativeBinaryResultError()
 
     result = da - db
-    return decimal_to_binary(f"D'{result}'")
+    width = len(_strip(a))
+    return f"B'{bin(result)[2:].zfill(width)}"
 
 
 def binary_multiply(a: str, b: str) -> str:
     da = get_decimal_value(a)
     db = get_decimal_value(b)
-    return decimal_to_binary(f"D'{da * db}'")
+    return decimal_to_binary(f"D'{da * db}")
 
 
 def binary_divide(a: str, b: str) -> str:
@@ -51,7 +52,7 @@ def binary_divide(a: str, b: str) -> str:
     if db == 0:
         raise ValueError("Binary division by zero")
 
-    return decimal_to_binary(f"D'{da // db}'")
+    return decimal_to_binary(f"D'{da // db}")
 
 #-----------Gunn 091: complement-------------------------------
 
@@ -78,24 +79,6 @@ def twos_complement(b: str) -> str:
     result = bin(val)[2:].zfill(len(ones))         # zfill won't truncate carry
     return f"B'{result}"
 
-
-def binary_to_decimal(b: str) -> str:
-    return "D'0"
-
-def decimal_to_binary(d: str) -> str:
-    return "B'0"
-
-def binary_add(b1: str, b2: str) -> str:
-    return "B'0"
-
-def binary_subtract(b1: str, b2: str) -> str:
-    return "B'0"
-
-def binary_multiply(b1: str, b2: str) -> str:
-    return "B'0"
-
-def binary_divide(b1: str, b2: str) -> str:
-    return "B'0"
 
 def binary_to_decimal(b: str) -> str:
     """
