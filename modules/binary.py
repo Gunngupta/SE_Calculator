@@ -77,3 +77,22 @@ def twos_complement(b: str) -> str:
     val = int(ones, 2) + 1                         # no modulo
     result = bin(val)[2:].zfill(len(ones))         # zfill won't truncate carry
     return f"B'{result}"
+
+
+def binary_to_decimal(b: str) -> str:
+    return "D'0"
+
+def decimal_to_binary(d: str) -> str:
+    return "B'0"
+
+def binary_add(b1: str, b2: str) -> str:
+    return "B'0"
+
+def binary_subtract(b1: str, b2: str) -> str:
+    return "B'0"
+
+def binary_multiply(b1: str, b2: str) -> str:
+    return "B'0"
+
+def binary_divide(b1: str, b2: str) -> str:
+    return "B'0"
