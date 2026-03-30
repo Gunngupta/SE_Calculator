@@ -10,48 +10,44 @@ def _strip(b: str) -> str:
 
 
 def _validate(b: str) -> None:
-    if not b or not all(c in '01' for c in b):
+    if not b or not all(c in '0gi1' for c in b):
         raise InvalidBinaryInputError(b)
     
 
 
 # Tanisha Gupta - Binary Arithmetic
-
-def get_decimal_value(b: str) -> int:
-    return int(binary_to_decimal(b).split("'")[1])
-
-
 def binary_add(a: str, b: str) -> str:
-    da = get_decimal_value(a)
-    db = get_decimal_value(b)
-    return decimal_to_binary(f"D'{da + db}'")
+   
+    da = int(binary_to_decimal(a).split("'")[1])
+    db = int(binary_to_decimal(b).split("'")[1])
+    return decimal_to_binary(f"D'{da + db}")
 
 
 def binary_subtract(a: str, b: str) -> str:
-    da = get_decimal_value(a)
-    db = get_decimal_value(b)
-
+   
+    da = int(binary_to_decimal(a).split("'")[1])
+    db = int(binary_to_decimal(b).split("'")[1])
     if da < db:
-        raise ValueError("Negative result not allowed")
-
-    result = da - db
-    return decimal_to_binary(f"D'{result}'")
+        raise NegativeBinaryResultError()
+    bit_len = max(len(_strip(a)), len(_strip(b)))
+    result = bin(da - db)[2:].zfill(bit_len)
+    return f"B'{result}"
 
 
 def binary_multiply(a: str, b: str) -> str:
-    da = get_decimal_value(a)
-    db = get_decimal_value(b)
-    return decimal_to_binary(f"D'{da * db}'")
+   
+    da = int(binary_to_decimal(a).split("'")[1])
+    db = int(binary_to_decimal(b).split("'")[1])
+    return decimal_to_binary(f"D'{da * db}")
 
 
 def binary_divide(a: str, b: str) -> str:
-    da = get_decimal_value(a)
-    db = get_decimal_value(b)
-
+   
+    da = int(binary_to_decimal(a).split("'")[1])
+    db = int(binary_to_decimal(b).split("'")[1])
     if db == 0:
         raise ValueError("Binary division by zero")
-
-    return decimal_to_binary(f"D'{da // db}'")
+    return decimal_to_binary(f"D'{da // db}")
 
 #-----------Gunn 091: complement-------------------------------
 
